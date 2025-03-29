@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('brinquedos', function (Blueprint $table) {
+        Schema::create('pagamentos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('locacao_id');
             $table->string('nome');
             $table->integer('codigo');
-            $table->unsignedBigInteger('marca_id');
-            $table->unsignedBigInteger('tipo_brinquedo_id');
-            $table->decimal('valor_total_locacao');
-            $table->date('data_aquisicao');
-            $table->foreign('marca_id')->references('id')->on('marcas');
-            $table->foreign('tipo_brinquedo_id')->references('id')->on('tipo_brinquedo');
+            $table->string('cpf_cliente');
+            $table->decimal('valor_total_pagamento');
+            $table->decimal('valor_locacao');
+            $table->date('data_pagamento');
+            $table->foreign('locacao_id')->references('id')->on('locacao');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('brinquedos');
+        Schema::dropIfExists('pagamentos');
     }
 };
