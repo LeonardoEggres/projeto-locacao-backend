@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('brinquedos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->integer('codigo');
+            $table->string('nome')->nullable();
+            $table->integer('codigo')->nullable();
             $table->unsignedBigInteger('marca_id');
             $table->unsignedBigInteger('tipo_brinquedo_id');
-            $table->decimal('valor_total_locacao');
-            $table->date('data_aquisicao');
+            $table->decimal('valor_total_locacao')->nullable();
+            $table->date('data_aquisicao')->nullable();
             $table->foreign('marca_id')->references('id')->on('marcas');
             $table->foreign('tipo_brinquedo_id')->references('id')->on('tipo_brinquedo');
             $table->timestamps();

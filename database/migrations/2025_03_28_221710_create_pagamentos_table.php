@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('pagamentos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('locacao_id');
-            $table->string('nome');
-            $table->integer('codigo');
-            $table->string('cpf_cliente');
-            $table->decimal('valor_total_pagamento');
-            $table->decimal('valor_locacao');
-            $table->date('data_pagamento');
+            $table->string('nome')->nullable();
+            $table->integer('codigo')->nullable();
+            $table->string('cpf_cliente')->nullable();
+            $table->decimal('valor_total_pagamento')->nullable();
+            $table->decimal('valor_locacao')->nullable();
+            $table->date('data_pagamento')->nullable();
             $table->foreign('locacao_id')->references('id')->on('locacao');
             $table->timestamps();
         });

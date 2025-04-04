@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->string('cpf');
-            $table->string('telefone');
+            $table->string('nome')->nullable();
+            $table->string('cpf')->nullable();
+            $table->string('telefone')->nullable();
             $table->unsignedBigInteger('papel_id');
             $table->foreign('papel_id')->references('id')->on('papeis');
             $table->timestamps();

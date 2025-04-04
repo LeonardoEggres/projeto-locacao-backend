@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Locacao extends Model
 {
     use HasFactory;
+
+    protected $table = 'locacao';
+
+    protected $fillable = [
+        'data_atual',
+        'valor_unitario',
+        'valor_total',
+        'data_devolucao',
+        'cpf',
+    ];
 }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Papeis extends Model
 {
     use HasFactory;
+
+    protected $table = 'papeis';
+
+    protected $fillable = [
+        'nome',
+        'codigo'
+    ];
 }

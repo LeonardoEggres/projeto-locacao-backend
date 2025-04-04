@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TipoBrinquedo extends Model
 {
     use HasFactory;
+
+    protected $table = 'tipo_brinquedo';
+
+    protected $fillable = [
+        'nome',
+        'codigo'
+    ];
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('papeis', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->integer('codigo');
+            $table->string('nome')->nullable();
+            $table->integer('codigo')->nullable();
             $table->timestamps();
         });
     }

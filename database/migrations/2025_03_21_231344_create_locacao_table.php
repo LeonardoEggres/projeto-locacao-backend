@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('locacao', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('brinquedo_id');
-            $table->dateTime('data_atual');
-            $table->decimal('valor_unitario');
-            $table->decimal('valor_total');
-            $table->date('data_devolucao');
-            $table->string('cpf');
+            $table->dateTime('data_atual')->nullable();
+            $table->decimal('valor_unitario')->nullable();
+            $table->decimal('valor_total')->nullable();
+            $table->date('data_devolucao')->nullable();
+            $table->string('cpf')->nullable();
             $table->foreign('brinquedo_id')->references('id')->on('brinquedos');
             $table->timestamps();
         });

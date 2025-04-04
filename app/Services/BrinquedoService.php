@@ -6,6 +6,11 @@ class BrinquedoService
 {
     public function index()
     {
-        // Implemente sua lógica aqui
+        
     }
+
+    public function create()
+    {
+        
+    } 
 }
