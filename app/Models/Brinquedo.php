@@ -14,7 +14,7 @@ class Brinquedo extends Model
     protected $fillable = [
         'nome',
         'codigo',
-        'valor_total_locacao',
+        'valor_locacao',
         'data_aquisicao',
     ];
 }

@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BrinquedoController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('v1')->group(function (){
+    Route::get('/brinquedo', [BrinquedoController::class,'index']);
+    Route::post('/brinquedo/{id}', [BrinquedoController::class,'store']);
+    Route::post('/brinquedo/{id}', [BrinquedoController::class,'update']);
+    Route::delete('/brinquedo{id}', [BrinquedoController::class,'delete']);
 });

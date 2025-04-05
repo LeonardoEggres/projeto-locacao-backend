@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('codigo')->nullable();
             $table->unsignedBigInteger('marca_id');
             $table->unsignedBigInteger('tipo_brinquedo_id');
-            $table->decimal('valor_total_locacao')->nullable();
+            $table->decimal('valo_locacao')->nullable();
             $table->date('data_aquisicao')->nullable();
             $table->foreign('marca_id')->references('id')->on('marcas');
             $table->foreign('tipo_brinquedo_id')->references('id')->on('tipo_brinquedo');
