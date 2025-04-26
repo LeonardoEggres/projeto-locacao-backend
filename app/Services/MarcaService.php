@@ -2,10 +2,48 @@
 
 namespace App\Services;
 
+use App\Models\Marca;
+use Exception;
+
 class MarcaService
 {
     public function index()
     {
-        // Implemente sua lógica aqui
+        return Marca::all();
+    }
+
+    public function store($request)
+    {
+        try {
+            $data = $request->validate([
+                'nome' => 'required | string',
+                'codigo' => 'required | numeric',
+            ]);
+            Marca::create($data);
+        } catch (Exception $e) {
+            return "Erro ao inserir:" . $e->getMessage();
+        }
+    }
+
+    public function update($request, $id) {
+        try {
+            Marca::updateOrCreate([
+                "id" => $id,
+            ],
+            [
+                'nome' => $request->nome,
+                'codigo' => $request->codigo,
+            ]);
+        } catch (Exception $e) {
+            return "Erro ao alterar:" . $e->getMessage();
+        }
+    }
+
+    public function destroy($id) {
+        try {
+            Marca::destroy($id);
+        } catch (Exception $e) {
+            return "Erro ao deletar:" . $e->getMessage();
+        }
     }
 }

@@ -13,24 +13,28 @@ class BrinquedoController extends Controller // Corrigido para "Controller"
      */
     public function index(BrinquedoService $BrinquedoService)
     {
-       dd($BrinquedoService->index());
-    
+       $brinquedo = $BrinquedoService->index();
+       return $brinquedo;
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
+    public function store(Request $request, BrinquedoService $BrinquedoService)
     {
-        dd("aqui");
-        // $brinquedoService->store($request);
+        $BrinquedoService->store($request);   
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function update(Request $request, string $id, BrinquedoService $BrinquedoService)
     {
-        //
+        $BrinquedoService->update($request, $id);
+    }
+
+    public function destroy(string $id,BrinquedoService $BrinquedoService)
+    {
+        $BrinquedoService->destroy($id);
     }
 }

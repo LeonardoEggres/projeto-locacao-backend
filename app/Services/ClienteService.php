@@ -2,10 +2,50 @@
 
 namespace App\Services;
 
+use App\Models\Cliente;
+use Exception;
+
 class ClienteService
 {
     public function index()
     {
-        // Implemente sua lógica aqui
+        return Cliente::all();
+    }
+
+    public function store($request)
+    {
+        try {
+            $data = $request->validate([
+                'nome' => 'required | string',
+                'cpf' => 'required | string',
+                'data_nascimento' => 'required | date',
+                'endereco' => 'required | string',
+                'telefone' => 'required | string'
+            ]);
+            Cliente::create($data);
+        } catch (Exception $e) {
+            return "Erro ao inserir:" . $e->getMessage();
+        }
+    }
+
+    public function update($request, $id){
+        try {
+            Cliente::updateOrCreate([
+                "id" => $id,
+            ], 
+            [
+                "nome"=> $request->nome,
+                "cpf"=> $request->cpf,
+                "data_nascimento"=> $request->data_nascimento,
+                "endereco"=> $request->endereco,
+                "telefone"=> $request->telefone,
+            ]);
+        } catch (Exception $e) {
+            return "Erro ao alterar". $e->getMessage();
+        }
+    }
+
+    public function destroy($id){
+        Cliente::destroy($id);
     }
 }

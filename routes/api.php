@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\TipoBrinquedoController;
+use App\Models\Marca;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +35,14 @@ Route::prefix('v1')->group(function () {
     Route::post('/tipo-brinquedo', [TipoBrinquedoController::class, 'store']);
     Route::put('/tipo-brinquedo/{id}', [TipoBrinquedoController::class, 'update']);
     Route::delete('/tipo-brinquedo/{id}', [TipoBrinquedoController::class, 'destroy']);
+
+    Route::get('/marca', [MarcaController::class, 'index']);
+    Route::post('/marca', [MarcaController::class, 'store']);
+    Route::put('/marca/{id}', [MarcaController::class, 'update']);
+    Route::delete('/marca/{id}', [MarcaController::class, 'destroy']);
+
+    Route::get('/cliente', [ClienteController::class, 'index']);
+    Route::post('/cliente', [ClienteController::class, 'store']);
+    Route::put('/cliente/{id}', [ClienteController::class, 'update']);
+    Route::delete('/cliente/{id}', [ClienteController::class, 'destroy']);
 });

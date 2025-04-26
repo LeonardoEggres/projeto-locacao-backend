@@ -22,13 +22,15 @@ class TipoBrinquedoService
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
-        ;
     }
 
     public function update($request, $id)
     {
         try {
             TipoBrinquedo::updateOrCreate([
+                "id" => $id,
+            ],
+            [
                 'nome' => $request->nome,
                 'codigo' => $request->codigo,
             ]);
