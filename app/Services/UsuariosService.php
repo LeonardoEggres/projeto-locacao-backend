@@ -11,7 +11,7 @@ class UsuariosService
 
     public function create()
     {
-        usuarios
+        
     }
 
     public function edit($id)

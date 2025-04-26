@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TipoBrinquedoController;
+use App\Models\TipoBrinquedo;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BrinquedoController;
@@ -18,8 +20,3 @@ use App\Http\Controllers\BrinquedoController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/brinquedo', [BrinquedoController::class,'index']);
-Route::post('/brinquedo/{id}', [BrinquedoController::class,'store']);
-Route::post('/brinquedo/{id}', [BrinquedoController::class,'update']);
-Route::delete('/brinquedo{id}', [BrinquedoController::class,'delete']);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TipoBrinquedoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function (){
-    Route::get('/brinquedo', [BrinquedoController::class,'index']);
-    Route::post('/brinquedo/{id}', [BrinquedoController::class,'store']);
-    Route::post('/brinquedo/{id}', [BrinquedoController::class,'update']);
-    Route::delete('/brinquedo{id}', [BrinquedoController::class,'delete']);
+Route::prefix('v1')->group(function () {
+    Route::get('/brinquedo', [BrinquedoController::class, 'index']);
+    Route::post('/brinquedo', [BrinquedoController::class, 'store']);
+    Route::put('/brinquedo/{id}', [BrinquedoController::class, 'update']);
+    Route::delete('/brinquedo{id}', [BrinquedoController::class, 'destroy']);
+
+    Route::get('/tipo-brinquedo', [TipoBrinquedoController::class, 'index']);
+    Route::post('/tipo-brinquedo', [TipoBrinquedoController::class, 'store']);
+    Route::put('/tipo-brinquedo/{id}', [TipoBrinquedoController::class, 'update']);
+    Route::delete('/tipo-brinquedo/{id}', [TipoBrinquedoController::class, 'destroy']);
 });
