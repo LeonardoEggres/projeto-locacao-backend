@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\PagamentoController;
+use App\Http\Controllers\PapeisController;
+use App\Http\Controllers\PermissaoController;
 use App\Http\Controllers\TipoBrinquedoController;
+use App\Http\Controllers\UsuariosController;
 use App\Models\Marca;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +49,24 @@ Route::prefix('v1')->group(function () {
     Route::post('/cliente', [ClienteController::class, 'store']);
     Route::put('/cliente/{id}', [ClienteController::class, 'update']);
     Route::delete('/cliente/{id}', [ClienteController::class, 'destroy']);
+
+    Route::get('/pagamento', [PagamentoController::class, 'index']);
+    Route::post('/pagamento', [PagamentoController::class, 'store']);
+    Route::put('/pagamento/{id}', [PagamentoController::class, 'update']);
+    Route::delete('/pagamento/{id}', [PagamentoController::class, 'destroy']);
+
+    Route::get('/papeis', [PapeisController::class, 'index']);
+    Route::post('/papeis', [PapeisController::class, 'store']);
+    Route::put('/papeis/{id}', [PapeisController::class, 'update']);
+    Route::delete('/papeis/{id}', [PapeisController::class, 'destroy']);
+
+    Route::get('/permissao', [PermissaoController::class, 'index']);
+    Route::post('/permissao', [PermissaoController::class, 'store']);
+    Route::put('/permissao/{id}', [PermissaoController::class, 'update']);
+    Route::delete('/permissao/{id}', [PermissaoController::class, 'destroy']);
+
+    Route::get('/usuarios', [UsuariosController::class, 'index']);
+    Route::post('/usuarios', [UsuariosController::class, 'store']);
+    Route::put('/usuarios/{id}', [UsuariosController::class, 'update']);
+    Route::delete('/usuarios/{id}', [UsuariosController::class, 'destroy']);
 });

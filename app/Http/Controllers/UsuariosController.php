@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
+use App\Services\UsuariosService;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
@@ -9,40 +10,32 @@ class UsuariosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(UsuariosService $usuariosService) 
     {
-        return response()->json(Usuarios);
+        return $usuariosService->index();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, UsuariosService $usuariosService)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $usuariosService->store($request);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, UsuariosService $usuariosService)
     {
-        //
+        $usuariosService->update($request, $id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, UsuariosService $usuariosService)
     {
-        //
+        $usuariosService->destroy($id);
     }
 }

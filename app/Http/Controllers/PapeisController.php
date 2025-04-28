@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
+use App\Services\PapeisService;
 use Illuminate\Http\Request;
 
 class PapeisController extends Controller
@@ -9,40 +10,32 @@ class PapeisController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PapeisService $papeisService)
     {
-        //
+        return $papeisService->index();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, PapeisService $papeisService)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $papeisService->store($request);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, PapeisService $papeisService)
     {
-        //
+        $papeisService->update($request, $id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, PapeisService $papeisService)
     {
-        //
+        $papeisService->destroy($id);
     }
 }

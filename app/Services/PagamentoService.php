@@ -2,10 +2,56 @@
 
 namespace App\Services;
 
+use App\Models\Pagamento;
+use App\Models\Papeis;
+use Exception;
+
 class PagamentoService
 {
     public function index()
     {
-        // Implemente sua lógica aqui
+        return Pagamento::all();
+    }
+
+    public function store($request)
+    {
+        try {
+            $data = $request->validate([
+                'nome' => 'required | string',
+                'codigo' => 'required | numeric',
+                'cpf_cliente' => 'required | string',
+                'valor_total_pagamento' => 'required | numeric',
+                'valor_locacao' => 'required | numeric',
+                'data_pagamento' => 'required | date'
+            ]);
+            Pagamento::create($data);
+        } catch (Exception $e) {
+            return "Erro ao inserir:" . $e->getMessage();
+        }
+    }
+
+    public function update($request, $id){
+        try {
+            Papeis::updateOrCreate([
+                "id"=> $id
+            ],[
+                'nome' => $request->nome,
+                'codigo' => $request->codigo,
+                'cpf_cliente'=> $request->cpf_cliente,
+                'valor_total_pagamento'=> $request->valor_total_pagamento,
+                'valor_locacao' => $request->valor_locacao,
+                'data_pagamento' => $request->data_pagamento,
+            ]);
+        } catch (Exception $e) {
+            return "Erro ao alterar:" . $e->getMessage();
+        }
+    }
+
+    public function destroy($id){
+        try {
+            Papeis::destroy($id);
+        } catch (Exception $e) {   
+            return "Erro ao deletar". $e->getMessage();
+        }
     }
 }
