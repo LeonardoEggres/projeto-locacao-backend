@@ -20,6 +20,8 @@ class PapeisService
                 'codigo' => 'required | numeric'
             ]);
             Papeis::create($data);
+
+            return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
@@ -29,14 +31,16 @@ class PapeisService
     {
         try {
             Papeis::updateOrCreate(
-                [
-                    "id" => $id
-                ],
-                [
-                    'nome' => $request->nome,
-                    'codigo' => $request->codigo,
-                ]
+            [
+                "id" => $id
+            ],
+            [
+                'nome' => $request->nome,
+                'codigo' => $request->codigo,
+            ]
             );
+
+            return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();
         }
@@ -45,6 +49,7 @@ class PapeisService
     public function destroy($id){
         try{
             Papeis::destroy($id);
+            return "Excluído com sucesso!";
         } catch (Exception $e) {
             return "Erro ao deletar". $e->getMessage();
         }

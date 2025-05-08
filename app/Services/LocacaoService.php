@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Locacao;
+use Exception;
 
 class LocacaoService
 {

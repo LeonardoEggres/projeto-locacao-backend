@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\TipoBrinquedo;
-use FFI\Exception;
+use Exception;
 
 class TipoBrinquedoService
 {

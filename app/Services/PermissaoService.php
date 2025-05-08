@@ -20,6 +20,8 @@ class PermissaoService
                 'codigo' => 'required | numeric',
             ]);
             Permissao::create($data);
+
+            return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
@@ -33,6 +35,8 @@ class PermissaoService
                 'nome' => 'required | string',
                 'codigo' => 'required | numeric',
             ]);
+
+            return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar". $e->getMessage();
         }
@@ -41,6 +45,7 @@ class PermissaoService
     public function destroy($id) {
         try {
             Permissao::destroy($id);
+            return "Excluído com sucesso!";
         } catch (Exception $e) {
             return "Erro ao deletar". $e->getMessage();
         }

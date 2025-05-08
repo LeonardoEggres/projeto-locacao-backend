@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Pagamento;
+use Exception;
 
 class PagamentoService
 {
