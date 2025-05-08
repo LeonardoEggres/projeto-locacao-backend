@@ -23,6 +23,8 @@ class ClienteService
                 'telefone' => 'required | string'
             ]);
             Cliente::create($data);
+
+            return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
@@ -40,12 +42,19 @@ class ClienteService
                 "endereco"=> $request->endereco,
                 "telefone"=> $request->telefone,
             ]);
+
+            return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar". $e->getMessage();
         }
     }
 
     public function destroy($id){
-        Cliente::destroy($id);
+        try {
+            Cliente::destroy($id);
+            return "Excluído com sucesso!";
+        } catch (Exception $e) {
+            return "Erro ao deletar:" . $e->getMessage();
+        }
     }
 }

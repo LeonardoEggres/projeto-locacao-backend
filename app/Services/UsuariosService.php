@@ -12,33 +12,37 @@ class UsuariosService
         return Usuarios::all();
     }
 
-    public function store($request)
+    public function create()
     {
-        try{
+        try {
             $data = $request->validate([
                 'nome' => 'required | string',
                 'telefone' => 'required | string',
-                'cpf' => 'required | string'
+                'cpf' => 'required | string',
             ]);
             Usuarios::create($data);
-        } catch(Exception $e){
-            return "Erro ao inserir:" . $e->getMessage();
+
+            return "Cadastrado com sucesso!";
+        } catch (Exception $e) {
+             return "Erro ao inserir:" . $e->getMessage();
         }
     }
 
-    public function update($request, $id)
+    public function edit($id)
     {
-        try{
+        try {
             Usuarios::updateOrCreate([
-                'id' => $id,
+                "id" => $id,
             ],
             [
                 'nome' => $request->nome,
                 'telefone' => $request->telefone,
                 'cpf' => $request->cpf,
             ]);
-        }catch(Exception $e){
-            return 'Erro ao alterar'. $e->getMessage();
+
+            return "Alterado com sucesso!";
+        } catch (Exception $e) {
+            return "Erro ao alterar:" . $e->getMessage();
         }
     }
 
@@ -46,8 +50,9 @@ class UsuariosService
     {
         try {
             Usuarios::destroy($id);
-        } catch(Exception $e){
-            return 'Erro ao deletar'. $e->getMessage();
+            return "Excluído com sucesso!";
+        } catch (Exception $e) {
+            return "Erro ao deletar:" . $e->getMessage();
         }
     }
 }

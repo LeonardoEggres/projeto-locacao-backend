@@ -11,6 +11,7 @@ class TipoBrinquedoService
     {
         return TipoBrinquedo::all();
     }
+    
     public function store($request)
     {
         try {
@@ -19,6 +20,8 @@ class TipoBrinquedoService
                 'codigo' => 'required | numeric',
             ]);
             TipoBrinquedo::create($data);
+
+            return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
@@ -34,19 +37,20 @@ class TipoBrinquedoService
                 'nome' => $request->nome,
                 'codigo' => $request->codigo,
             ]);
+
+            return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();
         }
-        ;
     }
 
     public function destroy($id)
     {
         try {
             TipoBrinquedo::destroy($id);
+            return "Excluído com sucesso!";
         } catch (Exception $e) {
             return "Erro ao deletar:" . $e->getMessage();
         }
-        ;
     }
 }

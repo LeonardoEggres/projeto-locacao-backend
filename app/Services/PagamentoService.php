@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Models\Pagamento;
-use App\Models\Papeis;
-use Exception;
 
 class PagamentoService
 {
@@ -22,36 +20,42 @@ class PagamentoService
                 'cpf_cliente' => 'required | string',
                 'valor_total_pagamento' => 'required | numeric',
                 'valor_locacao' => 'required | numeric',
-                'data_pagamento' => 'required | date'
+                'data_pagamento' => 'required | date',
             ]);
             Pagamento::create($data);
+
+            return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
     }
 
-    public function update($request, $id){
+    public function update($request, $id) {
         try {
-            Papeis::updateOrCreate([
-                "id"=> $id
-            ],[
+            Pagamento::updateOrCreate([
+                "id" => $id,
+            ],
+            [
                 'nome' => $request->nome,
                 'codigo' => $request->codigo,
-                'cpf_cliente'=> $request->cpf_cliente,
-                'valor_total_pagamento'=> $request->valor_total_pagamento,
+                'cpf_cliente' => $request->cpf_cliente,
+                'valor_total_pagamento' => $request->valor_total_pagamento,
                 'valor_locacao' => $request->valor_locacao,
                 'data_pagamento' => $request->data_pagamento,
             ]);
+        
+            return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();
         }
     }
 
-    public function destroy($id){
+    public function destroy($id) {
         try {
-            Papeis::destroy($id);
-        } catch (Exception $e) {   
-            return "Erro ao deletar". $e->getMessage();
+            Pagamento::destroy($id);
+            return "Excluído com sucesso!";
+        } catch (Exception $e) {
+            return "Erro ao deletar:" . $e->getMessage();
         }
     }
 }
