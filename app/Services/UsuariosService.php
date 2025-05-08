@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Usuarios;
+use Exception;
 
 class UsuariosService
 {
@@ -45,7 +46,7 @@ class UsuariosService
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         try {
             Usuarios::destroy($id);

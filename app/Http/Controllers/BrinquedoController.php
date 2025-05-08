@@ -13,8 +13,7 @@ class BrinquedoController extends Controller // Corrigido para "Controller"
      */
     public function index(BrinquedoService $BrinquedoService)
     {
-       $brinquedo = $BrinquedoService->index();
-       return $brinquedo;
+       return $BrinquedoService->index();
     }
 
     /**
