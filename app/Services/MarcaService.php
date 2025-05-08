@@ -20,6 +20,8 @@ class MarcaService
                 'codigo' => 'required | numeric',
             ]);
             Marca::create($data);
+
+            return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
@@ -34,6 +36,8 @@ class MarcaService
                 'nome' => $request->nome,
                 'codigo' => $request->codigo,
             ]);
+        
+            return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();
         }
@@ -42,6 +46,7 @@ class MarcaService
     public function destroy($id) {
         try {
             Marca::destroy($id);
+            return "Excluído com sucesso!";
         } catch (Exception $e) {
             return "Erro ao deletar:" . $e->getMessage();
         }

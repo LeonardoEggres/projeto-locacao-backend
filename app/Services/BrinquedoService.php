@@ -22,6 +22,8 @@ class BrinquedoService
                 'data_aquisicao' => 'required | date',
             ]);
             Brinquedo::create($data);
+
+            return "Cadastrado com sucesso!";
         } catch (Exception $e) {
              return "Erro ao inserir:" . $e->getMessage();
         }
@@ -38,6 +40,8 @@ class BrinquedoService
                 'valor_locacao' => $request->valor_locacao,
                 'data_aquisicao' => $request->data_aquisicao,
             ]);
+
+            return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();
         }
@@ -46,6 +50,7 @@ class BrinquedoService
     public function destroy($id){
         try{
             Brinquedo::destroy($id);
+            return "Excluído com sucesso!";
         } catch (Exception $e) {
             return "Erro ao deletar:" . $e->getMessage();
         }
