@@ -27,6 +27,14 @@ class TipoBrinquedoService
         }
     }
 
+    public function show($id){
+        try {
+            return TipoBrinquedo::findOrFail($id);
+        } catch (Exception $e) {
+            return "Ocorreu um erro buscar o Tipo de Brinquedo: ". $e->getMessage();
+        }
+    }
+
     public function update($request, $id)
     {
         try {

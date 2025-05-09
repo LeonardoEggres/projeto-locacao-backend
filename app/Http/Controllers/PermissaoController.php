@@ -23,6 +23,11 @@ class PermissaoController extends Controller
         return $permissaoService->store($request);
     }
 
+    public function show(string $id, PermissaoService $permissaoService)
+    {
+        return $permissaoService->show($id);
+    }
+
     /**
      * Update the specified resource in storage.
      */

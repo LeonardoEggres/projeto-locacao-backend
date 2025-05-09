@@ -32,7 +32,7 @@ class MarcaService
         try {
             return Marca::findOrFail($id);
         } catch (Exception $e) {
-            return 'Ocorreu um erro ao buscar a marca: '. $e->getMessage();
+            return "Ocorreu um erro ao buscar a marca: ". $e->getMessage();
         }
     }
 

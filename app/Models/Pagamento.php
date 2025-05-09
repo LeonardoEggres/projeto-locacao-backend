@@ -18,5 +18,6 @@ class Pagamento extends Model
         'valor_total_pagamento',
         'valor_locacao',
         'data_pagamento',
+        'locacao_id'
     ];
 }

@@ -16,18 +16,26 @@ class LocacaoService
     {
         try {
             $data = $request->validate([
-                'data_atual' => 'required | dateTime',
+                'data_atual' => 'required | date',
                 'valor_unitario' => 'required | numeric',
                 'valor_total' => 'required | numeric',
                 'data_devolucao' => 'required | date',
                 'cpf' => 'required | string',
-                'brinquedo_id' => 'required | numeric',
+                'brinquedo_id' => 'required | exists:brinquedos,id',
             ]);
             Locacao::create($data);
 
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
+        }
+    }
+
+    public function show($id){
+        try{
+            return Locacao::findOrFail($id);
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao buscar a Locação: ". $e->getMessage();
         }
     }
 
