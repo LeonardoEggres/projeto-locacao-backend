@@ -21,7 +21,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request, ClienteService $clienteService)
     {
-        $clienteService->store($request);
+        return $clienteService->store($request);
     }
 
 
@@ -30,7 +30,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id, ClienteService $clienteService)
     {
-        $clienteService->update($request, $id);
+        return $clienteService->update($request, $id);
     }
 
     /**
@@ -38,6 +38,6 @@ class ClienteController extends Controller
      */
     public function destroy(string $id, ClienteService $clienteService)
     {
-        $clienteService->destroy($id);
+        return $clienteService->destroy($id);
     }
 }

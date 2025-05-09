@@ -12,8 +12,7 @@ class TipoBrinquedoController extends Controller
      */
     public function index(TipoBrinquedoService $tipoBrinquedoService)
     {
-       $tipos = $tipoBrinquedoService->index(); 
-       return $tipos;
+       return $tipoBrinquedoService->index();
     }
 
     /**
@@ -21,7 +20,7 @@ class TipoBrinquedoController extends Controller
      */
     public function store(Request $request, TipoBrinquedoService $tipoBrinquedoService)
     {
-        $tipoBrinquedoService->store($request);
+        return $tipoBrinquedoService->store($request);
     }
 
     /**
@@ -29,7 +28,7 @@ class TipoBrinquedoController extends Controller
      */
     public function update(Request $request, string $id, TipoBrinquedoService $tipoBrinquedoService)
     {
-       $tipoBrinquedoService->update($request, $id);
+        return $tipoBrinquedoService->update($request, $id);
     }
 
     /**
@@ -37,6 +36,6 @@ class TipoBrinquedoController extends Controller
      */
     public function destroy(string $id, TipoBrinquedoService $tipoBrinquedoService)
     {
-        $tipoBrinquedoService->destroy($id);
+        return $tipoBrinquedoService->destroy($id);
     }
 }

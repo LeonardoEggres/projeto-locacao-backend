@@ -20,7 +20,7 @@ class PapeisController extends Controller
      */
     public function store(Request $request, PapeisService $papeisService)
     {
-        $papeisService->store($request);
+        return $papeisService->store($request);
     }
 
     /**
@@ -28,7 +28,7 @@ class PapeisController extends Controller
      */
     public function update(Request $request, string $id, PapeisService $papeisService)
     {
-        $papeisService->update($request, $id);
+        return $papeisService->update($request, $id);
     }
 
     /**
@@ -36,6 +36,6 @@ class PapeisController extends Controller
      */
     public function destroy(string $id, PapeisService $papeisService)
     {
-        $papeisService->destroy($id);
+        return $papeisService->destroy($id);
     }
 }

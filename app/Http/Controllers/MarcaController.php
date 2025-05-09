@@ -21,7 +21,7 @@ class MarcaController extends Controller
      */
     public function store(Request $request, MarcaService $marcaService)
     {
-        $marcaService->store($request);
+        return $marcaService->store($request);
     }
 
     /**
@@ -29,7 +29,7 @@ class MarcaController extends Controller
      */
     public function update(Request $request, string $id, MarcaService $marcaService)
     {
-        $marcaService->update($request, $id);
+        return $marcaService->update($request, $id);
     }
 
     /**
@@ -37,6 +37,6 @@ class MarcaController extends Controller
      */
     public function destroy(string $id, MarcaService $marcaService)
     {
-        $marcaService->destroy($id);
+        return $marcaService->destroy($id);
     }
 }

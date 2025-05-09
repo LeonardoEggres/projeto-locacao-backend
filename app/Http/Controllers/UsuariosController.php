@@ -20,7 +20,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request, UsuariosService $usuariosService)
     {
-        $usuariosService->store($request);
+        return $usuariosService->store($request);
     }
 
     /**
@@ -28,7 +28,7 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, string $id, UsuariosService $usuariosService)
     {
-        $usuariosService->update($request, $id);
+        return $usuariosService->update($request, $id);
     }
 
     /**
@@ -36,6 +36,6 @@ class UsuariosController extends Controller
      */
     public function destroy(string $id, UsuariosService $usuariosService)
     {
-        $usuariosService->destroy($id);
+        return $usuariosService->destroy($id);
     }
 }

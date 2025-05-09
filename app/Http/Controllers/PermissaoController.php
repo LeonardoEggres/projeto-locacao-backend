@@ -20,7 +20,7 @@ class PermissaoController extends Controller
      */
     public function store(Request $request, PermissaoService $permissaoService)
     {
-        $permissaoService->store($request);
+        return $permissaoService->store($request);
     }
 
     /**
@@ -28,7 +28,7 @@ class PermissaoController extends Controller
      */
     public function update(Request $request, string $id, PermissaoService $permissaoService)
     {
-        $permissaoService->update($request, $id);
+        return $permissaoService->update($request, $id);
     }
 
     /**
@@ -36,6 +36,6 @@ class PermissaoController extends Controller
      */
     public function destroy(string $id, PermissaoService $permissaoService)
     {
-        $permissaoService->destroy($id);
+        return $permissaoService->destroy($id);
     }
 }

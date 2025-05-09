@@ -20,7 +20,7 @@ class PagamentoController extends Controller
      */
     public function store(Request $request, PagamentoService $pagamentoService)
     {
-        $pagamentoService->store($request);
+        return $pagamentoService->store($request);
     }
 
     /**
@@ -28,7 +28,7 @@ class PagamentoController extends Controller
      */
     public function update(Request $request, string $id, PagamentoService $pagamentoService)
     {
-        $pagamentoService->update($request, $id);
+        return $pagamentoService->update($request, $id);
     }
 
     /**
@@ -36,6 +36,6 @@ class PagamentoController extends Controller
      */
     public function destroy(string $id, PagamentoService $pagamentoService)
     {
-        $pagamentoService->destroy($id);
+        return $pagamentoService->destroy($id);
     }
 }

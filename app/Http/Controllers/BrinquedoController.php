@@ -6,7 +6,7 @@ use App\Models\Brinquedo;
 use Illuminate\Http\Request;
 use App\Services\BrinquedoService;
 
-class BrinquedoController extends Controller // Corrigido para "Controller"
+class BrinquedoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class BrinquedoController extends Controller // Corrigido para "Controller"
      */
     public function store(Request $request, BrinquedoService $BrinquedoService)
     {
-        $BrinquedoService->store($request);   
+        return $BrinquedoService->store($request);   
     }
 
     /**
@@ -29,11 +29,11 @@ class BrinquedoController extends Controller // Corrigido para "Controller"
      */
     public function update(Request $request, string $id, BrinquedoService $BrinquedoService)
     {
-        $BrinquedoService->update($request, $id);
+        return $BrinquedoService->update($request, $id);
     }
 
     public function destroy(string $id,BrinquedoService $BrinquedoService)
     {
-        $BrinquedoService->destroy($id);
+        return $BrinquedoService->destroy($id);
     }
 }
