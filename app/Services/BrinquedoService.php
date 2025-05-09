@@ -20,6 +20,8 @@ class BrinquedoService
                 'codigo' => 'required | numeric',
                 'valor_locacao' => 'required | numeric',
                 'data_aquisicao' => 'required | date',
+                'marca_id' => 'required | exists:marcas,id',
+                'tipo_brinquedo_id' => 'required | exists:tipo_brinquedo,id'
             ]);
             Brinquedo::create($data);
 
@@ -39,6 +41,8 @@ class BrinquedoService
                 'codigo' => $request->codigo,
                 'valor_locacao' => $request->valor_locacao,
                 'data_aquisicao' => $request->data_aquisicao,
+                'marca_id' => $request->marca_id,
+                'tipo_brinquedo_id' => $request->tipo_brinquedo_id
             ]);
 
             return "Alterado com sucesso!";

@@ -27,7 +27,17 @@ class MarcaService
         }
     }
 
-    public function update($request, $id) {
+    public function show($id)
+    {
+        try {
+            return Marca::findOrFail($id);
+        } catch (Exception $e) {
+            return 'Ocorreu um erro ao buscar a marca: '. $e->getMessage();
+        }
+    }
+
+    public function update($request, $id)
+    {
         try {
             Marca::updateOrCreate([
                 "id" => $id,
