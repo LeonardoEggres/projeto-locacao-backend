@@ -24,6 +24,11 @@ class MarcaController extends Controller
         return $marcaService->store($request);
     }
 
+    public function show(string $id, MarcaService $marcaService)
+    {
+        return $marcaService->show($id);
+    }
+
     /**
      * Update the specified resource in storage.
      */

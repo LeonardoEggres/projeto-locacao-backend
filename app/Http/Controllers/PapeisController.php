@@ -23,6 +23,11 @@ class PapeisController extends Controller
         return $papeisService->store($request);
     }
 
+    public function show(string $id, PapeisService $papeisService)
+    {
+        return $papeisService->show($id);
+    }
+
     /**
      * Update the specified resource in storage.
      */

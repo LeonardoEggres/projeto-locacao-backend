@@ -24,6 +24,11 @@ class ClienteController extends Controller
         return $clienteService->store($request);
     }
 
+    public function show(string $id, ClienteService $clienteService)
+    {
+        return $clienteService->show($id);
+    }
+
 
     /**
      * Update the specified resource in storage.

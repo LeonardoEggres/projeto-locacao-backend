@@ -23,6 +23,11 @@ class PagamentoController extends Controller
         return $pagamentoService->store($request);
     }
 
+    public function show(string $id, PagamentoService $pagamentoService)
+    {
+        return $pagamentoService->show($id);
+    }
+
     /**
      * Update the specified resource in storage.
      */

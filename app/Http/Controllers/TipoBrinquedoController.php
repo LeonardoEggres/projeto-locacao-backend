@@ -23,6 +23,11 @@ class TipoBrinquedoController extends Controller
         return $tipoBrinquedoService->store($request);
     }
 
+    public function show(string $id, TipoBrinquedoService $tipoBrinquedoService)
+    {
+        return $tipoBrinquedoService->show($id);
+    }
+
     /**
      * Update the specified resource in storage.
      */

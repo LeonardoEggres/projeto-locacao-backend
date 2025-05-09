@@ -17,5 +17,6 @@ class Locacao extends Model
         'valor_total',
         'data_devolucao',
         'cpf',
+        'brinquedo_id'
     ];
 }
