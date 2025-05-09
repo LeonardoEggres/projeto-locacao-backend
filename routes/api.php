@@ -43,6 +43,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/marcas', [MarcaController::class, 'index']);
     Route::post('/marcas', [MarcaController::class, 'store']);
+    Route::get('/marcas/{id}', [MarcaController::class, 'show']);
     Route::put('/marcas/{id}', [MarcaController::class, 'update']);
     Route::delete('/marcas/{id}', [MarcaController::class, 'destroy']);
 

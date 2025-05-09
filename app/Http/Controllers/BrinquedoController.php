@@ -8,25 +8,21 @@ use App\Services\BrinquedoService;
 
 class BrinquedoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(BrinquedoService $BrinquedoService)
     {
        return $BrinquedoService->index();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request, BrinquedoService $BrinquedoService)
     {
         return $BrinquedoService->store($request);   
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function show(string $id, BrinquedoService $BrinquedoService)
+    {
+        return $BrinquedoService->show($id);   
+    }
+
     public function update(Request $request, string $id, BrinquedoService $BrinquedoService)
     {
         return $BrinquedoService->update($request, $id);
