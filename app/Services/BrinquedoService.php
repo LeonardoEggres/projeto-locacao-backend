@@ -1,29 +1,22 @@
 <?php
 
 namespace App\Services;
+use App\Http\Requests\BrinquedoRequest;
 use Exception;
-use Illuminate\Http\Request;
 use App\Models\Brinquedo;
+use Illuminate\Database\Eloquent\Collection;
 
 class BrinquedoService
 {
-    public function index()
+    public function index(): Collection
     {
         return Brinquedo::all();
     }
 
-    public function store($request)
+    public function store(BrinquedoRequest $request): string
     {
         try {
-            $data = $request->validate([
-                'nome' => 'required | string',
-                'codigo' => 'required | numeric',
-                'valor_locacao' => 'required | numeric',
-                'data_aquisicao' => 'required | date',
-                'marca_id' => 'required | exists:marcas,id',
-                'tipo_brinquedo_id' => 'required | exists:tipo_brinquedo,id'
-            ]);
-            Brinquedo::create($data);
+            Brinquedo::create($request->validated());
 
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
@@ -31,19 +24,12 @@ class BrinquedoService
         }
     }
 
-    public function update($request,$id){
+    public function update(BrinquedoRequest $request, $id): string
+    {
         try{
             Brinquedo::updateOrCreate([
                 "id" => $id,
-            ],
-            [
-                'nome' => $request->nome,
-                'codigo' => $request->codigo,
-                'valor_locacao' => $request->valor_locacao,
-                'data_aquisicao' => $request->data_aquisicao,
-                'marca_id' => $request->marca_id,
-                'tipo_brinquedo_id' => $request->tipo_brinquedo_id
-            ]);
+            ],$request->validated());
 
             return "Alterado com sucesso!";
         } catch (Exception $e) {
@@ -51,7 +37,8 @@ class BrinquedoService
         }
     }
 
-    public function destroy($id){
+    public function destroy($id): string
+    {
         try{
             Brinquedo::destroy($id);
             return "Excluído com sucesso!";

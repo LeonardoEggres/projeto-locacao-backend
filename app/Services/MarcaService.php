@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Http\Requests\MarcaRequest;
 use App\Models\Marca;
+use Dotenv\Exception\ValidationException;
 use Exception;
 
 class MarcaService
@@ -15,14 +17,12 @@ class MarcaService
     public function store($request)
     {
         try {
-            $data = $request->validate([
-                'nome' => 'required | string',
-                'codigo' => 'required | numeric',
-            ]);
-            Marca::create($data);
-
+            Marca::create($request);
             return "Cadastrado com sucesso!";
+        } catch (ValidationException $e) {
+            return "Erro na validação: ".$e->getMessage();
         } catch (Exception $e) {
+
             return "Erro ao inserir:" . $e->getMessage();
         }
     }
@@ -36,16 +36,12 @@ class MarcaService
         }
     }
 
-    public function update($request, $id)
+    public function update(MarcaRequest $request, $id)
     {
         try {
             Marca::updateOrCreate([
                 "id" => $id,
-            ],
-            [
-                'nome' => $request->nome,
-                'codigo' => $request->codigo,
-            ]);
+            ],$request->validated());
         
             return "Alterado com sucesso!";
         } catch (Exception $e) {
