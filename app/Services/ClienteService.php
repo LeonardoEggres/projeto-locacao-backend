@@ -30,34 +30,39 @@ class ClienteService
         }
     }
 
-    public function show($id){
-        try{
+    public function show($id)
+    {
+        try {
             return Cliente::findOrFail($id);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao buscar o Cliente: ". $e->getMessage();
+            return "Ocorreu um erro ao buscar o Cliente: " . $e->getMessage();
         }
     }
 
-    public function update($request, $id){
+    public function update($request, $id)
+    {
         try {
-            Cliente::updateOrCreate([
-                "id" => $id,
-            ], 
-            [
-                "nome"=> $request->nome,
-                "cpf"=> $request->cpf,
-                "data_nascimento"=> $request->data_nascimento,
-                "endereco"=> $request->endereco,
-                "telefone"=> $request->telefone,
-            ]);
+            Cliente::updateOrCreate(
+                [
+                    "id" => $id,
+                ],
+                [
+                    "nome" => $request->nome,
+                    "cpf" => $request->cpf,
+                    "data_nascimento" => $request->data_nascimento,
+                    "endereco" => $request->endereco,
+                    "telefone" => $request->telefone,
+                ]
+            );
 
             return "Alterado com sucesso!";
         } catch (Exception $e) {
-            return "Erro ao alterar". $e->getMessage();
+            return "Erro ao alterar" . $e->getMessage();
         }
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
             Cliente::destroy($id);
             return "Excluído com sucesso!";

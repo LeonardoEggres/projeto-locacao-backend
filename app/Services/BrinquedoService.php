@@ -27,32 +27,35 @@ class BrinquedoService
 
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
-             return "Erro ao inserir:" . $e->getMessage();
+            return "Erro ao inserir:" . $e->getMessage();
         }
     }
 
     public function show($id)
     {
-        try{
+        try {
             return Brinquedo::findOrFail($id);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao buscar o Brinquedo: ". $e->getMessage();
+            return "Ocorreu um erro ao buscar o Brinquedo: " . $e->getMessage();
         }
     }
 
-    public function update($request,$id){
-        try{
-            Brinquedo::updateOrCreate([
-                "id" => $id,
-            ],
-            [
-                'nome' => $request->nome,
-                'codigo' => $request->codigo,
-                'valor_locacao' => $request->valor_locacao,
-                'data_aquisicao' => $request->data_aquisicao,
-                'marca_id' => $request->marca_id,
-                'tipo_brinquedo_id' => $request->tipo_brinquedo_id
-            ]);
+    public function update($request, $id)
+    {
+        try {
+            Brinquedo::updateOrCreate(
+                [
+                    "id" => $id,
+                ],
+                [
+                    'nome' => $request->nome,
+                    'codigo' => $request->codigo,
+                    'valor_locacao' => $request->valor_locacao,
+                    'data_aquisicao' => $request->data_aquisicao,
+                    'marca_id' => $request->marca_id,
+                    'tipo_brinquedo_id' => $request->tipo_brinquedo_id
+                ]
+            );
 
             return "Alterado com sucesso!";
         } catch (Exception $e) {
@@ -60,8 +63,9 @@ class BrinquedoService
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             Brinquedo::destroy($id);
             return "Excluído com sucesso!";
         } catch (Exception $e) {
