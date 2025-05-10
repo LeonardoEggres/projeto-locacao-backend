@@ -35,7 +35,7 @@ class PagamentoService
     public function show($id)
     {
         try {
-            return Pagamento::findOrFail($id);
+            return json_encode(Pagamento::findOrFail($id));
         } catch (Exception $e) {
             return "Ocorreu um erro ao buscar o Pagamento: " . $e->getMessage();
         }

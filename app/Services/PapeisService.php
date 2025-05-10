@@ -30,7 +30,7 @@ class PapeisService
     public function show($id)
     {
         try {
-            return Papeis::findOrFail($id);
+            return json_encode(Papeis::findOrFail($id));
         } catch (Exception $e) {
             return "Ocorreu um erro ao buscar o Papel: " . $e->getMessage();
         }

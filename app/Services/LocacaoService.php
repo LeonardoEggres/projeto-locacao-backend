@@ -33,7 +33,7 @@ class LocacaoService
 
     public function show($id){
         try{
-            return Locacao::findOrFail($id);
+            return json_encode(Locacao::findOrFail($id));
         } catch (Exception $e) {
             return "Ocorreu um erro ao buscar a Locação: ". $e->getMessage();
         }

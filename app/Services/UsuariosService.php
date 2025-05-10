@@ -32,7 +32,7 @@ class UsuariosService
     public function show($id)
     {
         try {
-            return Usuarios::findOrFail($id);
+            return json_encode(Usuarios::findOrFail($id));
         } catch (Exception $e) {
             return "Ocorreu um erro ao buscar o usuário: " . $e->getMessage();
         }

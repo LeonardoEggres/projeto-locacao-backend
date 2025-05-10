@@ -29,7 +29,7 @@ class TipoBrinquedoService
 
     public function show($id){
         try {
-            return TipoBrinquedo::findOrFail($id);
+            return json_encode(TipoBrinquedo::findOrFail($id));
         } catch (Exception $e) {
             return "Ocorreu um erro buscar o Tipo de Brinquedo: ". $e->getMessage();
         }

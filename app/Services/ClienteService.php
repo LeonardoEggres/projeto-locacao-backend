@@ -32,7 +32,7 @@ class ClienteService
 
     public function show($id){
         try{
-            return Cliente::findOrFail($id);
+            return json_encode(Cliente::findOrFail($id));
         } catch (Exception $e) {
             return "Ocorreu um erro ao buscar o Cliente: ". $e->getMessage();
         }

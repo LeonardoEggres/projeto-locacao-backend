@@ -30,7 +30,7 @@ class PermissaoService
     public function show($id)
     {
         try {
-            return Permissao::findOrFail($id);
+            return json_encode(Permissao::findOrFail($id));
         } catch (Exception $e) {
             return "Ocorreu um erro ao buscar a Permissão: " . $e->getMessage();
         }
