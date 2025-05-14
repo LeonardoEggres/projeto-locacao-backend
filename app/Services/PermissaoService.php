@@ -27,27 +27,38 @@ class PermissaoService
         }
     }
 
-    public function update($request, $id) {
+    public function show($id)
+    {
+        try {
+            return json_encode(Permissao::findOrFail($id));
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao buscar a Permissão: " . $e->getMessage();
+        }
+    }
+
+    public function update($request, $id)
+    {
         try {
             Permissao::updateOrCreate([
-                "id"=> $id,
-            ],[
+                "id" => $id,
+            ], [
                 'nome' => 'required | string',
                 'codigo' => 'required | numeric',
             ]);
 
             return "Alterado com sucesso!";
         } catch (Exception $e) {
-            return "Erro ao alterar". $e->getMessage();
+            return "Erro ao alterar" . $e->getMessage();
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             Permissao::destroy($id);
             return "Excluído com sucesso!";
         } catch (Exception $e) {
-            return "Erro ao deletar". $e->getMessage();
+            return "Erro ao deletar" . $e->getMessage();
         }
     }
 }

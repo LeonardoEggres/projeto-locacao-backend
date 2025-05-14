@@ -23,6 +23,11 @@ class UsuariosController extends Controller
         return $usuariosService->store($request);
     }
 
+    public function show(string $id, UsuariosService $usuariosService)
+    {
+        return $usuariosService->show($id);
+    }
+
     /**
      * Update the specified resource in storage.
      */

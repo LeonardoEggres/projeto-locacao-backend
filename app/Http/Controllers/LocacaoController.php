@@ -23,6 +23,11 @@ class LocacaoController extends Controller
         return $locacaoService->store($request); 
     }
 
+    public function show(string $id,LocacaoService $locacaoService)
+    {
+        return $locacaoService->show($id);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -34,7 +39,7 @@ class LocacaoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, LocacaoService $locacaoService)
     {
         return $locacaoService->destroy($id); 
     }

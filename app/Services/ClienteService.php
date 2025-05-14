@@ -30,6 +30,14 @@ class ClienteService
         }
     }
 
+    public function show($id){
+        try{
+            return json_encode(Cliente::findOrFail($id));
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao buscar o Cliente: ". $e->getMessage();
+        }
+    }
+
     public function update($request, $id){
         try {
             Cliente::updateOrCreate([

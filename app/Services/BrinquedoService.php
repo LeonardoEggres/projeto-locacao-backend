@@ -24,12 +24,18 @@ class BrinquedoService
         }
     }
 
-    public function update(BrinquedoRequest $request, $id): string
+    public function show($id){
+        try{
+            return json_encode(Brinquedo::findOrFail($id));
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao buscar o Brinquedo: ". $e->getMessage();
+        }
+    }
+
+    public function update($request, $id)
     {
         try{
-            Brinquedo::updateOrCreate([
-                "id" => $id,
-            ],$request->validated());
+            Brinquedo::updateOrCreate([ "id" => $id ], $request);
 
             return "Alterado com sucesso!";
         } catch (Exception $e) {

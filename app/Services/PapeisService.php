@@ -27,17 +27,26 @@ class PapeisService
         }
     }
 
+    public function show($id)
+    {
+        try {
+            return json_encode(Papeis::findOrFail($id));
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao buscar o Papel: " . $e->getMessage();
+        }
+    }
+
     public function update($request, $id)
     {
         try {
             Papeis::updateOrCreate(
-            [
-                "id" => $id
-            ],
-            [
-                'nome' => $request->nome,
-                'codigo' => $request->codigo,
-            ]
+                [
+                    "id" => $id
+                ],
+                [
+                    'nome' => $request->nome,
+                    'codigo' => $request->codigo,
+                ]
             );
 
             return "Alterado com sucesso!";
@@ -46,12 +55,13 @@ class PapeisService
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             Papeis::destroy($id);
             return "Excluído com sucesso!";
         } catch (Exception $e) {
-            return "Erro ao deletar". $e->getMessage();
+            return "Erro ao deletar" . $e->getMessage();
         }
     }
 }

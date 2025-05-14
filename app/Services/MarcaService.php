@@ -30,9 +30,9 @@ class MarcaService
     public function show($id)
     {
         try {
-            return Marca::findOrFail($id);
+            return json_encode(Marca::findOrFail($id));
         } catch (Exception $e) {
-            return 'Ocorreu um erro ao buscar a marca: '. $e->getMessage();
+            return "Ocorreu um erro ao buscar a marca: ". $e->getMessage();
         }
     }
 

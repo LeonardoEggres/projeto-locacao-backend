@@ -14,7 +14,8 @@ class Usuarios extends Model
     protected $fillable = [
         'nome',
         'telefone',
-        'cpf'
+        'cpf',
+        'papel_id'
     ];
 
 }
