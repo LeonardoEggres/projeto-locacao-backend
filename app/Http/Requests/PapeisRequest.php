@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MarcaRequest extends FormRequest
+class PapeisRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -22,9 +22,9 @@ class MarcaRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nome.required' => 'O nome da marca é obrigatória.',
+            'nome.required' => 'O nome da papel é obrigatório.',
             'nome.string' => 'O nome deve ser texto.',
-            'codigo.required' => 'O código da marca é obrigatória.',
+            'codigo.required' => 'O código do papel é obrigatório.',
             'codigo.numeric' => 'O código deve ser um número.'
         ];
     }

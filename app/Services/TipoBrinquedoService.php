@@ -9,27 +9,27 @@ class TipoBrinquedoService
 {
     public function index()
     {
-        return TipoBrinquedo::all();
+        try {
+            return TipoBrinquedo::all();
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+        }
     }
     
     public function store($request)
     {
         try {
-            $data = $request->validate([
-                'nome' => 'required | string',
-                'codigo' => 'required | numeric',
-            ]);
-            TipoBrinquedo::create($data);
-
+            TipoBrinquedo::create($request);
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
         }
     }
 
-    public function show($id){
+    public function show($id)
+    {
         try {
-            return json_encode(TipoBrinquedo::findOrFail($id));
+            return TipoBrinquedo::findOrFail($id);
         } catch (Exception $e) {
             return "Ocorreu um erro buscar o Tipo de Brinquedo: ". $e->getMessage();
         }
@@ -38,14 +38,7 @@ class TipoBrinquedoService
     public function update($request, $id)
     {
         try {
-            TipoBrinquedo::updateOrCreate([
-                "id" => $id,
-            ],
-            [
-                'nome' => $request->nome,
-                'codigo' => $request->codigo,
-            ]);
-
+            TipoBrinquedo::updateOrCreate([ "id" => $id ], $request);
             return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();

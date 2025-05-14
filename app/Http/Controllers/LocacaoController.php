@@ -2,43 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LocacaoRequest;
 use App\Services\LocacaoService;
 
 class LocacaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(LocacaoService $locacaoService)
     {
         return $locacaoService->index(); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request, LocacaoService $locacaoService)
+    public function store(LocacaoRequest $request, LocacaoService $locacaoService)
     {
-        return $locacaoService->store($request); 
+        return $locacaoService->store($request->validated()); 
     }
 
-    public function show(string $id,LocacaoService $locacaoService)
+    public function show(string $id, LocacaoService $locacaoService)
     {
         return $locacaoService->show($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id, LocacaoService $locacaoService)
+    public function update(LocacaoRequest $request, string $id, LocacaoService $locacaoService)
     {
-        return $locacaoService->update($request, $id); 
+        return $locacaoService->update($request->validated(), $id); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id, LocacaoService $locacaoService)
     {
         return $locacaoService->destroy($id); 
