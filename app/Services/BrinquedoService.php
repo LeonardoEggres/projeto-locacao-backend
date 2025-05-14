@@ -72,4 +72,21 @@ class BrinquedoService
             return "Erro ao deletar:" . $e->getMessage();
         }
     }
+
+    public function filter(Request $request)
+    {
+        return Brinquedo::where(
+            'nome',
+            'like',
+            '%' . $request->nome . '%'
+            )->select(
+                'nome',
+                'codigo'
+            )->orderBy(
+                'nome',
+                'asc'
+            )->limit(
+                10
+            )->get();
+    }
 }

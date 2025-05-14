@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::get('/brinquedos', [BrinquedoController::class, 'index']);
     Route::post('/brinquedos', [BrinquedoController::class, 'store']);
+    Route::get('/brinquedos/filtros', [BrinquedoController::class, 'filter']);
     Route::get('/brinquedos/{id}', [BrinquedoController::class, 'show']);
     Route::put('/brinquedos/{id}', [BrinquedoController::class, 'update']);
     Route::delete('/brinquedos{id}', [BrinquedoController::class, 'destroy']);
