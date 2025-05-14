@@ -20,4 +20,9 @@ class Pagamento extends Model
         'data_pagamento',
         'locacao_id'
     ];
+
+    public function locacao()
+    {
+        return $this->belongsTo(Locacao::class);
+    }
 }

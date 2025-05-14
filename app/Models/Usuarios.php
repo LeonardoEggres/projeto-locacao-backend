@@ -18,4 +18,8 @@ class Usuarios extends Model
         'papel_id'
     ];
 
+    public function papel()
+    {
+        return $this->belongsTo(Papeis::class);
+    }
 }

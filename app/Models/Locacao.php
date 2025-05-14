@@ -19,4 +19,9 @@ class Locacao extends Model
         'cpf',
         'brinquedo_id'
     ];
+
+    public function brinquedo()
+    {
+        return $this->belongsTo(Brinquedo::class);
+    }
 }
