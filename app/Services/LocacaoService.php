@@ -20,12 +20,13 @@ class LocacaoService
     public function store($request)
     {
         try {
+            dd($request);
             $locacao = Locacao::create([
-                'codigo' => $request->codigo,
-                'data_atual' => $request->data_atual,
-                'valor_total' => $request->valor_total,
-                'data_devolucao' => $request->data_devolucao,
-                'cliente_id' => $request->cliente_id,
+                'codigo' => $request['codigo'],
+                'data_atual' => $request['data_atual'],
+                'valor_total' => $request['valor_total'],
+                'data_devolucao' => $request['data_devolucao'],
+                'cliente_id' => $request['cliente_id'],
             ]);
 
             foreach ($request->itens as $item) {
