@@ -14,21 +14,33 @@ class LocacaoSeeder extends Seeder
     public function run(): void
     {
         Locacao::create([
-            'data_atual' => '2025-05-09',
-            'valor_unitario' => 500,
-            'valor_total' => 1000,
-            'data_devolucao' => '2025-05-12',
-            'cpf' => '567.019.384-72',
-            'brinquedo_id' => 2
+            "codigo" => "1",
+            "data_atual" => "2025-07-06",
+            "valor_total" => "14",
+            "data_devolucao" => "2025-06-04",
+            "cliente_id" => "1",
+            "itens" => [
+              "quantidade" => "2",
+              "valor_unitario" => "7",
+              "valor_total_item" => "14",
+              "locacao_id" => "1",
+              "brinquedo_id" => "1"
+            ]          
         ]);
 
         Locacao::create([
-            'data_atual' => '2025-05-09',
-            'valor_unitario' => 400,
-            'valor_total' => 1200,
-            'data_devolucao' => '2025-05-12',
-            'cpf' => '127.090.533-10',
-            'brinquedo_id' => 1
+            "codigo" => "2",
+            "data_atual" => "2025-07-06",
+            "valor_total" => "6",
+            "data_devolucao" => "2025-06-04",
+            "cliente_id" => "1",
+            "itens" => [
+              "quantidade" => "1",
+              "valor_unitario" => "6",
+              "valor_total_item" => "6",
+              "locacao_id" => "1",
+              "brinquedo_id" => "1"
+            ]
         ]);
     }
 }
