@@ -11,7 +11,7 @@ class BrinquedoController extends Controller
 {
     public function index(BrinquedoService $BrinquedoService)
     {
-       return $BrinquedoService->index();
+        return $BrinquedoService->index();
     }
 
     public function store(BrinquedoRequest $request, BrinquedoService $BrinquedoService)
@@ -21,7 +21,7 @@ class BrinquedoController extends Controller
 
     public function show(string $id, BrinquedoService $BrinquedoService)
     {
-        return $BrinquedoService->show($id);   
+        return $BrinquedoService->show($id);
     }
 
     public function update(BrinquedoRequest $request, string $id, BrinquedoService $BrinquedoService)
@@ -29,8 +29,13 @@ class BrinquedoController extends Controller
         return $BrinquedoService->update($request->validated(), $id);
     }
 
-    public function destroy(string $id,BrinquedoService $BrinquedoService)
+    public function destroy(string $id, BrinquedoService $BrinquedoService)
     {
         return $BrinquedoService->destroy($id);
+    }
+
+    public function filter(Request $request, BrinquedoService $BrinquedoService)
+    {
+        return $BrinquedoService->filter($request);    
     }
 }
