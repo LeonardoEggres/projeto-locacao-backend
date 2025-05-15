@@ -21,10 +21,10 @@ class LocacaoRequest extends FormRequest
             'cliente_id' => 'required|exists:clientes,id',
             'brinquedo_id' => 'required|exists:brinquedos,id',
             'itens' => 'required|array|min:1',
-            'itens.*.quantidade' => 'required|integer|min:1',
-            'itens.*.valor_unitario' => 'required|numeric|min:0',
-            'itens.*.valor_total_item' => 'required|numeric|min:0',
-            'itens.*.brinquedo_id' => 'required|exists:brinquedos,id',
+            'itens.quantidade' => 'required|integer|min:1',
+            'itens.valor_unitario' => 'required|numeric|min:0',
+            'itens.valor_total_item' => 'required|numeric|min:0',
+            'itens.brinquedo_id' => 'required|exists:brinquedos,id',
         ];
     }
 
@@ -54,14 +54,18 @@ class LocacaoRequest extends FormRequest
             
             'itens.required' => 'Os itens são obrigatórios.',
             'itens.array' => 'Os itens devem ser um array.',
-            'itens.*.quantidade.required' => 'A quantidade é obrigatória para todos os itens.',
-            'itens.*.quantidade.integer' => 'A quantidade deve ser um número inteiro.',
-            'itens.*.valor_unitario.required' => 'O valor unitário é obrigatório para todos os itens.',
-            'itens.*.valor_unitario.numeric' => 'O valor unitário deve ser numérico.',
-            'itens.*.valor_total_item.required' => 'O valor total do item é obrigatório.',
-            'itens.*.valor_total_item.numeric' => 'O valor total do item deve ser numérico.',
-            'itens.*.brinquedo_id.required' => 'O brinquedo é obrigatório em todos os itens.',
-            'itens.*.brinquedo_id.exists' => 'O brinquedo selecionado não existe em um dos itens.',
+
+            'itens.quantidade.required' => 'A quantidade é obrigatória para todos os itens.',
+            'itens.quantidade.integer' => 'A quantidade deve ser um número inteiro.',
+
+            'itens.valor_unitario.required' => 'O valor unitário é obrigatório para todos os itens.',
+            'itens.valor_unitario.numeric' => 'O valor unitário deve ser numérico.',
+
+            'itens.valor_total_item.required' => 'O valor total do item é obrigatório.',
+            'itens.valor_total_item.numeric' => 'O valor total do item deve ser numérico.',
+
+            'itens.brinquedo_id.required' => 'O brinquedo é obrigatório em todos os itens.',
+            'itens.brinquedo_id.exists' => 'O brinquedo selecionado não existe em um dos itens.'
         ];
     }
 }
