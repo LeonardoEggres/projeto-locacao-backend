@@ -12,16 +12,20 @@ class Locacao extends Model
     protected $table = 'locacao';
 
     protected $fillable = [
+        'codigo',
         'data_atual',
-        'valor_unitario',
         'valor_total',
         'data_devolucao',
-        'cpf',
-        'brinquedo_id'
+        'cliente_id'
     ];
 
-    public function brinquedo()
+    public function cliente()
     {
-        return $this->belongsTo(Brinquedo::class);
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function itens()
+    {
+        return $this->hasMany(LocacaoItem::class);
     }
 }

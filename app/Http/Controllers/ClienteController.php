@@ -14,7 +14,7 @@ class ClienteController extends Controller
 
     public function store(ClienteRequest $request, ClienteService $clienteService)
     {
-        return $clienteService->store($request);
+        return $clienteService->store($request->validated());
     }
 
     public function show(string $id, ClienteService $clienteService)

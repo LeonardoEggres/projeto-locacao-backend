@@ -26,7 +26,7 @@ class BrinquedoController extends Controller
 
     public function update(BrinquedoRequest $request, string $id, BrinquedoService $BrinquedoService)
     {
-        return $BrinquedoService->update($request, $id);
+        return $BrinquedoService->update($request->validated(), $id);
     }
 
     public function destroy(string $id,BrinquedoService $BrinquedoService)
