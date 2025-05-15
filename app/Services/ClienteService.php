@@ -31,7 +31,7 @@ class ClienteService
         try {
             return Cliente::findOrFail($id);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao buscar o Cliente: ". $e->getMessage();
+            return "Ocorreu um erro ao buscar o Cliente: " . $e->getMessage();
         }
     }
 
@@ -41,7 +41,7 @@ class ClienteService
             Cliente::updateOrCreate([ "id" => $id ], $request);
             return "Alterado com sucesso!";
         } catch (Exception $e) {
-            return "Erro ao alterar". $e->getMessage();
+            return "Erro ao alterar" . $e->getMessage();
         }
     }
 

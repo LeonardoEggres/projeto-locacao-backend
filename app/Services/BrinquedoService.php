@@ -21,7 +21,7 @@ class BrinquedoService
             Brinquedo::create($request);
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
-             return "Erro ao inserir:" . $e->getMessage();
+            return "Erro ao inserir:" . $e->getMessage();
         }
     }
 
@@ -30,7 +30,7 @@ class BrinquedoService
         try {
             return Brinquedo::findOrFail($id);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao exibir os dados do brinquedo: ". $e->getMessage();
+            return "Ocorreu um erro ao buscar o Brinquedo: " . $e->getMessage();
         }
     }
 
