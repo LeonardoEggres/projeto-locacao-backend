@@ -9,21 +9,17 @@ class ClienteService
 {
     public function index()
     {
-        return Cliente::all();
+        try {
+            return Cliente::all();
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+        }
     }
 
     public function store($request)
     {
         try {
-            $data = $request->validate([
-                'nome' => 'required | string',
-                'cpf' => 'required | string',
-                'data_nascimento' => 'required | date',
-                'endereco' => 'required | string',
-                'telefone' => 'required | string'
-            ]);
-            Cliente::create($data);
-
+            Cliente::create($request);
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
@@ -42,19 +38,7 @@ class ClienteService
     public function update($request, $id)
     {
         try {
-            Cliente::updateOrCreate(
-                [
-                    "id" => $id,
-                ],
-                [
-                    "nome" => $request->nome,
-                    "cpf" => $request->cpf,
-                    "data_nascimento" => $request->data_nascimento,
-                    "endereco" => $request->endereco,
-                    "telefone" => $request->telefone,
-                ]
-            );
-
+            Cliente::updateOrCreate([ "id" => $id ], $request);
             return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar" . $e->getMessage();

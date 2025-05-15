@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('locacao', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('brinquedo_id');
-            $table->dateTime('data_atual')->nullable();
-            $table->decimal('valor_unitario')->nullable();
+            $table->integer('codigo');
+            $table->date('data_atual')->nullable();
             $table->decimal('valor_total')->nullable();
-            $table->date('data_devolucao')->nullable();
-            $table->string('cpf')->nullable();
-            $table->foreign('brinquedo_id')->references('id')->on('brinquedos');
+            $table->date('data_devolucao');
+            $table->unsignedBigInteger('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->timestamps();
         });
     }

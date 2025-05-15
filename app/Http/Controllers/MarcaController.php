@@ -2,26 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\BrinquedoService;
+use App\Http\Requests\MarcaRequest;
 use App\Services\MarcaService;
-use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(MarcaService $marcaService)
     {
         return $marcaService->index(); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request, MarcaService $marcaService)
+    public function store(MarcaRequest $request, MarcaService $marcaService)
     {
-        return $marcaService->store($request);
+        return $marcaService->store($request->validated()); 
     }
 
     public function show(string $id, MarcaService $marcaService)
@@ -29,17 +22,11 @@ class MarcaController extends Controller
         return $marcaService->show($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id, MarcaService $marcaService)
+    public function update(MarcaRequest $request, string $id, MarcaService $marcaService)
     {
-        return $marcaService->update($request, $id);
+        return $marcaService->update($request->validated(), $id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id, MarcaService $marcaService)
     {
         return $marcaService->destroy($id);

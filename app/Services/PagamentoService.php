@@ -9,23 +9,17 @@ class PagamentoService
 {
     public function index()
     {
-        return Pagamento::all();
+        try {
+            return Pagamento::all();
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+        }
     }
 
     public function store($request)
     {
         try {
-            $data = $request->validate([
-                'nome' => 'required | string',
-                'codigo' => 'required | numeric',
-                'cpf_cliente' => 'required | string',
-                'valor_total_pagamento' => 'required | numeric',
-                'valor_locacao' => 'required | numeric',
-                'data_pagamento' => 'required | date',
-                'locacao_id' => 'required | exists:locacao,id'
-            ]);
-            Pagamento::create($data);
-
+            Pagamento::create($request);
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
@@ -37,28 +31,14 @@ class PagamentoService
         try {
             return Pagamento::findOrFail($id);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao buscar o Pagamento: " . $e->getMessage();
+            return "Ocorreu um erro ao buscar o Papel: " . $e->getMessage();
         }
     }
 
     public function update($request, $id)
     {
         try {
-            Pagamento::updateOrCreate(
-                [
-                    "id" => $id,
-                ],
-                [
-                    'nome' => $request->nome,
-                    'codigo' => $request->codigo,
-                    'cpf_cliente' => $request->cpf_cliente,
-                    'valor_total_pagamento' => $request->valor_total_pagamento,
-                    'valor_locacao' => $request->valor_locacao,
-                    'data_pagamento' => $request->data_pagamento,
-                    'locacao_id' => $request->locacao_id,
-                ]
-            );
-
+            Pagamento::updateOrCreate([ "id" => $id ], $request);
             return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();
