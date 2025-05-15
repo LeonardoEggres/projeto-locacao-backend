@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsuariosRequest;
 use App\Services\UsuariosService;
-use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(UsuariosService $usuariosService) 
     {
         return $usuariosService->index();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request, UsuariosService $usuariosService)
+    public function store(UsuariosRequest $request, UsuariosService $usuariosService)
     {
-        return $usuariosService->store($request);
+        return $usuariosService->store($request->validated());
     }
 
     public function show(string $id, UsuariosService $usuariosService)
@@ -28,17 +22,11 @@ class UsuariosController extends Controller
         return $usuariosService->show($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id, UsuariosService $usuariosService)
+    public function update(UsuariosRequest $request, string $id, UsuariosService $usuariosService)
     {
-        return $usuariosService->update($request, $id);
+        return $usuariosService->update($request->validated(), $id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id, UsuariosService $usuariosService)
     {
         return $usuariosService->destroy($id);

@@ -9,20 +9,17 @@ class UsuariosService
 {
     public function index()
     {
-        return Usuarios::all();
+        try {
+            return Usuarios::all();
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+        }
     }
 
     public function store($request)
     {
         try {
-            $data = $request->validate([
-                'nome' => 'required | string',
-                'telefone' => 'required | string',
-                'cpf' => 'required | string',
-                'papel_id' => 'required | exists:papeis,id'
-            ]);
-            Usuarios::create($data);
-
+            Usuarios::create($request);
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
@@ -41,18 +38,7 @@ class UsuariosService
     public function update($request, $id)
     {
         try {
-            Usuarios::updateOrCreate(
-                [
-                    "id" => $id,
-                ],
-                [
-                    'nome' => $request->nome,
-                    'telefone' => $request->telefone,
-                    'cpf' => $request->cpf,
-                    'papel_id' => $request->papel_id,
-                ]
-            );
-
+            Usuarios::updateOrCreate([ "id" => $id ], $request);
             return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar:" . $e->getMessage();

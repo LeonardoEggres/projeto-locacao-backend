@@ -9,7 +9,6 @@ use App\Http\Controllers\PermissaoController;
 use App\Http\Controllers\TipoBrinquedoController;
 use App\Http\Controllers\LocacaoController;
 use App\Http\Controllers\BrinquedoController;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

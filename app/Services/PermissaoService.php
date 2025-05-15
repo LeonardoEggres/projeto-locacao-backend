@@ -9,18 +9,17 @@ class PermissaoService
 {
     public function index()
     {
-        return Permissao::all();
+        try {
+            return Permissao::all();
+        } catch (Exception $e) {
+            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+        }
     }
 
     public function store($request)
     {
         try {
-            $data = $request->validate([
-                'nome' => 'required | string',
-                'codigo' => 'required | numeric',
-            ]);
-            Permissao::create($data);
-
+            Permissao::create($request);
             return "Cadastrado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao inserir:" . $e->getMessage();
@@ -39,13 +38,7 @@ class PermissaoService
     public function update($request, $id)
     {
         try {
-            Permissao::updateOrCreate([
-                "id" => $id,
-            ], [
-                'nome' => 'required | string',
-                'codigo' => 'required | numeric',
-            ]);
-
+            Permissao::updateOrCreate([ "id"=> $id ], $request);
             return "Alterado com sucesso!";
         } catch (Exception $e) {
             return "Erro ao alterar" . $e->getMessage();
