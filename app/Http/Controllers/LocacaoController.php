@@ -23,7 +23,7 @@ class LocacaoController extends Controller
     }
 
     public function update(LocacaoRequest $request, string $id, LocacaoService $locacaoService)
-    {
+    { 
         return $locacaoService->update($request->validated(), $id); 
     }
 

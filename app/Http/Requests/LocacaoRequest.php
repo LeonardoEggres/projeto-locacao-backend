@@ -20,6 +20,7 @@ class LocacaoRequest extends FormRequest
             'data_devolucao' => 'required|date|date_format:Y-m-d',
             'cliente_id' => 'required|exists:clientes,id',
             'items' => 'required|array|min:1',
+            'items.*.id' => 'integer',
             'items.*.quantidade' => 'required|integer|min:1',
             'items.*.valor_unitario' => 'required|numeric|min:0',
             'items.*.valor_total_item' => 'required|numeric|min:0',
@@ -50,6 +51,8 @@ class LocacaoRequest extends FormRequest
 
             'items.required' => 'Os itens são obrigatórios.',
             'items.array' => 'Os itens devem ser um array.',
+
+            'items.*.id' => 'O id do item deve ser numérico.',
 
             'items.*.quantidade.required' => 'A quantidade é obrigatória para todos os itens.',
             'items.*.quantidade.integer' => 'A quantidade deve ser um número inteiro.',

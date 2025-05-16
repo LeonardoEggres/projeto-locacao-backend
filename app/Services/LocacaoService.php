@@ -65,13 +65,12 @@ class LocacaoService
                 'cliente_id'     => $locacao->cliente_id,
                 'items'          => $locacao->items->map(function ($item) {
                     return [
+                        'id'                => $item->id,
                         'quantidade'        => $item->quantidade,
                         'valor_unitario'    => $item->valor_unitario,
                         'valor_total_item'  => $item->valor_total_item,
-                        'brinquedo_id'      => [
-                            "id" => $item->brinquedo_id,
-                            "nome" => Brinquedo::where('id', $item->brinquedo_id)->pluck('nome')
-                        ]
+                        'brinquedo_id'      => $item->brinquedo_id,
+                        'brinquedo_nome'    => Brinquedo::where('id', $item->brinquedo_id)->pluck('nome')
                     ];
                 })
             ], 200);
@@ -109,7 +108,7 @@ class LocacaoService
                     ]
                 );
             }
-            
+
             return response()->json([
                 "message" => "Alterado com sucesso!"
             ], 200);
