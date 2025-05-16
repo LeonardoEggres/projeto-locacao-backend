@@ -35,7 +35,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/brinquedos/filtros', [BrinquedoController::class, 'filter']);
     Route::get('/brinquedos/{id}', [BrinquedoController::class, 'show']);
     Route::put('/brinquedos/{id}', [BrinquedoController::class, 'update']);
-    Route::delete('/brinquedos{id}', [BrinquedoController::class, 'destroy']);
+    Route::delete('/brinquedos/{id}', [BrinquedoController::class, 'destroy']);
 
     Route::get('/tipo-brinquedos', [TipoBrinquedoController::class, 'index']);
     Route::post('/tipo-brinquedos', [TipoBrinquedoController::class, 'store']);
@@ -84,4 +84,5 @@ Route::prefix('v1')->group(function () {
     Route::get('/locacoes/{id}', [LocacaoController::class, 'show']);
     Route::put('/locacoes/{id}', [LocacaoController::class, 'update']);
     Route::delete('/locacoes/{id}', [LocacaoController::class, 'destroy']);
+    Route::delete('/locacao-items/{id}', [LocacaoController::class, 'destroyItem']);
 });

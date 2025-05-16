@@ -10,9 +10,12 @@ class PagamentoService
     public function index()
     {
         try {
-            return Pagamento::all();
+            $pagamentos = Pagamento::all();
+            return response()->json($pagamentos, 200);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+            return response()->json([
+                "error" => "Ocorreu um erro ao retornar os dados: " . $e->getMessage()
+            ], 500);
         }
     }
 
@@ -20,28 +23,39 @@ class PagamentoService
     {
         try {
             Pagamento::create($request);
-            return "Cadastrado com sucesso!";
+            return response()->json([
+                "message" => "Cadastrado com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao inserir:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao inserir: " . $e->getMessage()
+            ], 500);
         }
     }
 
     public function show($id)
     {
         try {
-            return Pagamento::findOrFail($id);
+            $pagamento = Pagamento::findOrFail($id);
+            return response()->json($pagamento, 200);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao buscar o Papel: " . $e->getMessage();
+            return response()->json([
+                "error" => "Ocorreu um erro ao buscar o Papel: " . $e->getMessage()
+            ], 500);
         }
     }
 
     public function update($request, $id)
     {
         try {
-            Pagamento::updateOrCreate([ "id" => $id ], $request);
-            return "Alterado com sucesso!";
+            Pagamento::updateOrCreate(["id" => $id], $request);
+            return response()->json([
+                "message" => "Alterado com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao alterar:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao alterar: " . $e->getMessage()
+            ], 500);
         }
     }
 
@@ -49,9 +63,13 @@ class PagamentoService
     {
         try {
             Pagamento::destroy($id);
-            return "Excluído com sucesso!";
+            return response()->json([
+                "message" => "Excluído com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao deletar:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao deletar: " . $e->getMessage()
+            ], 500);
         }
     }
 }

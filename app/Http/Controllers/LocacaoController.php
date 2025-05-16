@@ -14,7 +14,7 @@ class LocacaoController extends Controller
 
     public function store(LocacaoRequest $request, LocacaoService $locacaoService)
     {
-        return $locacaoService->store($request->validated()); 
+        return $locacaoService->store($request->validated());
     }
 
     public function show(string $id, LocacaoService $locacaoService)
@@ -25,6 +25,11 @@ class LocacaoController extends Controller
     public function update(LocacaoRequest $request, string $id, LocacaoService $locacaoService)
     {
         return $locacaoService->update($request->validated(), $id); 
+    }
+
+    public function destroyItem(string $id, LocacaoService $locacaoService)
+    {
+        return $locacaoService->destroyItem($id); 
     }
 
     public function destroy(string $id, LocacaoService $locacaoService)

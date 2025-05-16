@@ -24,7 +24,7 @@ class Locacao extends Model
         return $this->belongsTo(Cliente::class);
     }
 
-    public function itens()
+    public function items()
     {
         return $this->hasMany(LocacaoItem::class);
     }

@@ -1,17 +1,22 @@
 <?php
 
 namespace App\Services;
+
 use Exception;
 use App\Models\Brinquedo;
+use Illuminate\Http\Request;
 
 class BrinquedoService
 {
     public function index()
     {
         try {
-            return Brinquedo::all();
+            $brinquedo = Brinquedo::all();
+            return response()->json($brinquedo, 200);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+            return response()->json([
+                "error" => "Ocorreu um erro ao retornar os dados: " . $e->getMessage()
+            ], 500);
         }
     }
 
@@ -19,55 +24,68 @@ class BrinquedoService
     {
         try {
             Brinquedo::create($request);
-            return "Cadastrado com sucesso!";
+            return response()->json([
+                "message" => "Cadastrado com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao inserir:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao inserir:" . $e->getMessage()
+            ], 500);
         }
     }
 
     public function show($id)
     {
         try {
-            return Brinquedo::findOrFail($id);
+            $brinquedo = Brinquedo::findOrFail($id);
+            return response()->json($brinquedo, 200);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao buscar o Brinquedo: " . $e->getMessage();
+            return response()->json([
+                "error" => "Ocorreu um erro ao buscar o Brinquedo: " . $e->getMessage()
+            ], 500);
         }
     }
 
     public function update($request, $id)
     {
         try {
-            Brinquedo::updateOrCreate([ "id" => $id ], $request);
-            return "Alterado com sucesso!";
+            Brinquedo::updateOrCreate(["id" => $id], $request);
+            return response()->json([
+                "message" => "Alterado com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao alterar:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao alterar:" . $e->getMessage()
+            ], 500);
         }
+    }
+
+    public function filter(Request $request)
+    {
+        $brinquedo = Brinquedo::where('nome','like','%' . $request->nome . '%')
+        ->select(
+            'id',
+            'codigo',
+            'nome',
+            'valor_locacao'
+        )->orderBy('nome','asc')
+        ->limit(10)
+        ->get();
+
+        return response()->json($brinquedo, 200);
     }
 
     public function destroy($id)
     {
         try {
             Brinquedo::destroy($id);
-            return "Excluído com sucesso!";
+            return response()->json([
+                "message" => "Excluído com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao deletar:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao deletar:" . $e->getMessage()
+            ], 500);
         }
-    }
-
-    public function filter(Request $request)
-    {
-        return Brinquedo::where(
-            'nome',
-            'like',
-            '%' . $request->nome . '%'
-            )->select(
-                'nome',
-                'codigo'
-            )->orderBy(
-                'nome',
-                'asc'
-            )->limit(
-                10
-            )->get();
     }
 }

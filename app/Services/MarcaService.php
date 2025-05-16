@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Http\Requests\MarcaRequest;
 use App\Models\Marca;
 use Exception;
 
@@ -11,9 +10,12 @@ class MarcaService
     public function index()
     {
         try {
-            return Marca::all();
+            $marca = Marca::all();
+            return response()->json($marca, 200);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao retornar os dados: " . $e->getMessage();
+            return response()->json([
+                "error" => "Ocorreu um erro ao retornar os dados: " . $e->getMessage()
+            ], 500);
         }
     }
 
@@ -21,18 +23,25 @@ class MarcaService
     {
         try {
             Marca::create($request);
-            return "Cadastrado com sucesso!";
+            return response()->json([
+                "message" => "Cadastrado com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao inserir:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao inserir:" . $e->getMessage()
+            ], 500);
         }
     }
 
     public function show($id)
     {
         try {
-            return Marca::findOrFail($id);
+            $marca = Marca::findOrFail($id);
+            return response()->json($marca, 200);
         } catch (Exception $e) {
-            return "Ocorreu um erro ao buscar a marca: ". $e->getMessage();
+            return response()->json([
+                "error" => "Ocorreu um erro ao buscar a marca: ". $e->getMessage()
+            ], 500);
         }
     }
 
@@ -40,9 +49,13 @@ class MarcaService
     {
         try {
             Marca::updateOrCreate(["id" => $id], $request);
-            return "Alterado com sucesso!";
+            return response()->json([
+                "message" => "Alterado com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao alterar:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao alterar:" . $e->getMessage()
+            ], 500); 
         }
     }
 
@@ -50,9 +63,13 @@ class MarcaService
     {
         try {
             Marca::destroy($id);
-            return "Excluído com sucesso!";
+            return response()->json([
+                "message" => "Excluído com sucesso!"
+            ], 200);
         } catch (Exception $e) {
-            return "Erro ao deletar:" . $e->getMessage();
+            return response()->json([
+                "error" => "Erro ao deletar:" . $e->getMessage()
+            ], 500);
         }
     }
 }
